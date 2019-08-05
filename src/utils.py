@@ -11,9 +11,9 @@ def group2mmdetection(group: dict) -> dict:
     height, width = group['Height'].max(), group['Width'].max()
     def convert(x):
         if x == np.nan: return x
-        else: return kaggle2coco(list(map(int, x.split())))
+        else: return kaggle2coco(list(map(int, x.split())), height, width))
 
-    rles = group['EncodedPixels'].apply(convert), height, width)).tolist()
+    rles = group['EncodedPixels'].apply(convert).tolist()
     rles = mutils.frPyObjects(rles, height, width)
     masks = mutils.decode(rles)
     bboxes = mutils.toBbox(mutils.encode(np.asfortranarray(masks.astype(np.uint8))))
