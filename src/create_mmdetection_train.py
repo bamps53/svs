@@ -1,3 +1,5 @@
+import sys
+sys.path.append(".")
 import argparse
 import os
 import pickle
@@ -21,6 +23,8 @@ def parse_args():
 def main():
     args = parse_args()
     annotation = pd.read_csv(args.annotation)
+    annotation['ImageId'] = annotation['ImageId_ClassId'].apply(lambda x: x.split('_')[0])
+    annotation['ClassId'] = annotation['ImageId_ClassId'].apply(lambda x: x.split('_')[1])
     files = sorted(os.listdir(args.root))
     if args.n_samples != -1:
         files = files[:args.n_samples]
