@@ -25,6 +25,8 @@ def main():
     annotation = pd.read_csv(args.annotation)
     annotation['ImageId'] = annotation['ImageId_ClassId'].apply(lambda x: x.split('_')[0])
     annotation['ClassId'] = annotation['ImageId_ClassId'].apply(lambda x: x.split('_')[1])
+    annotation['width'] = 1600
+    annotation['height'] = 256
     files = sorted(os.listdir(args.root))
     if args.n_samples != -1:
         files = files[:args.n_samples]
