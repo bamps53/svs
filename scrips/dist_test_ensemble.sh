@@ -13,11 +13,11 @@ python -m torch.distributed.launch --nproc_per_node=$GPUS /svs/mmdetection/tools
     --launcher pytorch ${@:4} \
     --out=${MMDETECTION_PREDICTIONS}
 
-PYTHONPATH=/svs python /svs/src/submit.py \
+PYTHONPATH=/svs python /src/submit.py \
     --annotation=/data/test_mmdetection.pkl \
     --predictions=${MMDETECTION_PREDICTIONS} \
     --output=${SUBMISSION}
 
-PYTHONPATH=/svs python /svs/src/rm_attribute_classes.py \
+PYTHONPATH=/svs python /src/rm_attribute_classes.py \
     --submission=${SUBMISSION} \
     --output=${SUBMISSION_WA}
