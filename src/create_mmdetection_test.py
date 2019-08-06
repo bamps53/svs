@@ -37,6 +37,10 @@ def convert(group: dict, root) -> dict:
 def main():
     args = parse_args()
     annotation = pd.read_csv(args.annotation)
+    annotation['ImageId'] = annotation['ImageId_ClassId'].apply(lambda x: x.split('_')[0])
+    annotation['ClassId'] = annotation['ImageId_ClassId'].apply(lambda x: x.split('_')[1])
+    annotation['Width'] = 1600
+    annotation['Height'] = 256    
     print(len(annotation), len(set(annotation['ImageId'])))
 
     groups = list(annotation.groupby('ImageId'))
