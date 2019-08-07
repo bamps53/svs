@@ -1,3 +1,4 @@
+
 # model settings
 model = dict(
     type='HybridTaskCascade',
@@ -176,7 +177,7 @@ test_cfg = dict(
     keep_all_stages=False)
 # dataset settings
 dataset_type = 'CustomDataset'
-data_root = '/data/'
+data_root = 'data/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 data = dict(
@@ -184,8 +185,8 @@ data = dict(
     workers_per_gpu=4,
     train=dict(
         type=dataset_type,
-        ann_file=data_root + '/data/train_99_mmdetection.pkl',
-        img_prefix=data_root + 'train/',
+        ann_file=data_root + 'train_9_mmdetection.pkl',
+        img_prefix=data_root + 'train_images/',
         img_scale=[(600, 1900), (1200, 1900)],
         multiscale_mode='range',
         img_norm_cfg=img_norm_cfg,
@@ -220,8 +221,8 @@ data = dict(
     ),
     val=dict(
         type=dataset_type,
-        ann_file=data_root + '/data/val_01_mmdetection.pkl',
-        img_prefix=data_root + 'train/',
+        ann_file=data_root + 'val_1_mmdetection.pkl',
+        img_prefix=data_root + 'train_images/',
         img_scale=(1200, 1900),
         img_norm_cfg=img_norm_cfg,
         size_divisor=32,
@@ -232,7 +233,7 @@ data = dict(
     test=dict(
         type=dataset_type,
         ann_file=data_root + 'test_mmdetection.pkl',
-        img_prefix=data_root + 'test/',
+        img_prefix=data_root + 'test_images/',
         img_scale=[(1000, 1600), (1200, 1900), (1400, 2200)],
         img_norm_cfg=img_norm_cfg,
         size_divisor=32,

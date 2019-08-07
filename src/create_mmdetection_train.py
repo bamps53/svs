@@ -1,3 +1,4 @@
+
 import sys
 sys.path.append(".")
 import argparse
@@ -23,6 +24,7 @@ def parse_args():
 def main():
     args = parse_args()
     annotation = pd.read_csv(args.annotation)
+    annotation = annotation[annotation['EncodedPixels'].notnull()]
     annotation['ImageId'] = annotation['ImageId_ClassId'].apply(lambda x: x.split('_')[0])
     annotation['ClassId'] = annotation['ImageId_ClassId'].apply(lambda x: x.split('_')[1])
     annotation['Width'] = 1600
