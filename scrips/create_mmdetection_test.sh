@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
 PYTHONPATH=/svs python src/create_mmdetection_test.py \
-    --annotation=data/sample_submission.csv \
-    --root=data/test_images \
+    --annotation=../input/severstal-steel-defect-detection/sample_submission.csv \
+    --root=../input/severstal-steel-defect-detection/test_images \
     --output=data/test_mmdetection.pkl
