@@ -1,4 +1,3 @@
-
 # model settings
 model = dict(
     type='HybridTaskCascade',
@@ -48,7 +47,7 @@ model = dict(
             in_channels=256,
             fc_out_channels=1024,
             roi_feat_size=7,
-            num_classes=47,
+            num_classes=5,
             target_means=[0., 0., 0., 0.],
             target_stds=[0.1, 0.1, 0.2, 0.2],
             reg_class_agnostic=True),
@@ -58,7 +57,7 @@ model = dict(
             in_channels=256,
             fc_out_channels=1024,
             roi_feat_size=7,
-            num_classes=47,
+            num_classes=5,
             target_means=[0., 0., 0., 0.],
             target_stds=[0.05, 0.05, 0.1, 0.1],
             reg_class_agnostic=True),
@@ -68,7 +67,7 @@ model = dict(
             in_channels=256,
             fc_out_channels=1024,
             roi_feat_size=7,
-            num_classes=47,
+            num_classes=5,
             target_means=[0., 0., 0., 0.],
             target_stds=[0.033, 0.033, 0.067, 0.067],
             reg_class_agnostic=True)
@@ -83,7 +82,7 @@ model = dict(
         num_convs=4,
         in_channels=256,
         conv_out_channels=256,
-        num_classes=47))
+        num_classes=5))
 # model training and testing settings
 train_cfg = dict(
     rpn=dict(
@@ -181,13 +180,13 @@ data_root = 'data/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 data = dict(
-    imgs_per_gpu=2,
-    workers_per_gpu=4,
+    imgs_per_gpu=4,
+    workers_per_gpu=2,
     train=dict(
         type=dataset_type,
         ann_file=data_root + 'train_9_mmdetection.pkl',
         img_prefix=data_root + 'train_images/',
-        img_scale=[(600, 1900), (1200, 1900)],
+        img_scale=[(1600,256), (800, 256)],
         multiscale_mode='range',
         img_norm_cfg=img_norm_cfg,
         size_divisor=32,
@@ -223,7 +222,7 @@ data = dict(
         type=dataset_type,
         ann_file=data_root + 'val_1_mmdetection.pkl',
         img_prefix=data_root + 'train_images/',
-        img_scale=(1200, 1900),
+        img_scale=(1600,256),
         img_norm_cfg=img_norm_cfg,
         size_divisor=32,
         flip_ratio=0,
@@ -234,7 +233,7 @@ data = dict(
         type=dataset_type,
         ann_file=data_root + 'test_mmdetection.pkl',
         img_prefix=data_root + 'test_images/',
-        img_scale=[(1000, 1600), (1200, 1900), (1400, 2200)],
+        img_scale=[(1600,256), (800, 128), (800, 256)],
         img_norm_cfg=img_norm_cfg,
         size_divisor=32,
         flip_ratio=1.0,
@@ -258,7 +257,7 @@ log_config = dict(
         dict(type='TextLoggerHook'),
     ])
 # runtime settings
-total_epochs = 20
+total_epochs = 10
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
 
