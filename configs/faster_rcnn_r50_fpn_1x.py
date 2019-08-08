@@ -95,7 +95,7 @@ test_cfg = dict(
 )
 # dataset settings
 dataset_type = 'CustomDataset'
-data_root = '../input/'
+data_root = '/kaggle/input/severstal-steel-defect-detection/'
 work_root = 'data/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
@@ -111,7 +111,7 @@ data = dict(
         size_divisor=32,
         flip_ratio=0.5,
         with_mask=False,
-        with_crowd=True,
+        with_crowd=False,
         with_label=True),
     val=dict(
         type=dataset_type,
