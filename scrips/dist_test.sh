@@ -4,7 +4,6 @@ PYTHON=${PYTHON:-"python"}
 
 CONFIG=$1
 CHECKPOINT=$2
-GPUS=$3
+OUT=$3
 
-$PYTHON -m torch.distributed.launch --nproc_per_node=$GPUS \
-    /svs/mmdetection/tools/test.py $CONFIG $CHECKPOINT --launcher pytorch ${@:4}
+$PYTHON mmdetection/tools/test.py $CONFIG $CHECKPOINT --out $OUT
