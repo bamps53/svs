@@ -6,4 +6,4 @@ CONFIG=$1
 GPUS=$2
 
 $PYTHON -m torch.distributed.launch --nproc_per_node=$GPUS \
-    /kaggle-imaterialist/mmdetection/tools/train.py $CONFIG --launcher pytorch ${@:3}
+    mmdetection/tools/train.py $CONFIG --launcher pytorch ${@:3}
