@@ -26,7 +26,7 @@ def main():
     annotation = pd.read_csv(args.annotation)
     annotation = annotation[annotation['EncodedPixels'].notnull()]
     annotation['ImageId'] = annotation['ImageId_ClassId'].apply(lambda x: x.split('_')[0])
-    annotation['ClassId'] = annotation['ImageId_ClassId'].apply(lambda x: x.split('_')[1])
+    annotation['ClassId'] = annotation['ImageId_ClassId'].apply(lambda x: int(x.split('_')[1] - 1) #adjust num_class
     annotation['Width'] = 1600
     annotation['Height'] = 256
     files = sorted(os.listdir(args.root))
