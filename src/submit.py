@@ -34,7 +34,7 @@ def decode_and_resize(
         original_mask = np.zeros((original_height, original_width, channels))
         original_mask[y_min:y_max, x_min:x_max] = binary_mask
         binary_mask = original_mask
-    binary_mask = cv2.resize(binary_mask, (512, 512), cv2.INTER_NEAREST)
+    #binary_mask = cv2.resize(binary_mask, (512, 512), cv2.INTER_NEAREST)
     if len(binary_mask.shape) == 2:
         binary_mask = binary_mask[..., np.newaxis]
     return binary_mask
