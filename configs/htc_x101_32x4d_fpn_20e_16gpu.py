@@ -163,10 +163,11 @@ test_cfg = dict(
         nms_thr=0.7,
         min_bbox_size=0),
     rcnn=dict(
-        score_thr=0.001,
-        nms=dict(type='nms', iou_thr=0.5),
+        score_thr=0.5,
+        nms=dict(type='nms', iou_thr=0.3),
         max_per_img=100,
-        mask_thr_binary=0.5),
+        mask_thr_binary=0.45
+    ),        
     keep_all_stages=False)
 # dataset settings
 dataset_type = 'CustomDataset'
@@ -175,7 +176,7 @@ work_root = 'data/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 data = dict(
-    imgs_per_gpu=8,
+    imgs_per_gpu=4,
     workers_per_gpu=2,
     train=dict(
         type=dataset_type,
